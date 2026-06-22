@@ -90,7 +90,7 @@
 
 @media (max-width: 1440px), (max-height: 900px) {
   .hero__content {
-    padding-bottom: 30px; /* Baja más la descripción y botón en laptops */
+    padding-bottom: 45px; /* Un poco más de aire para que no se sienta tan pegado abajo */
   }
 }
 
