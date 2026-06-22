@@ -46,8 +46,8 @@
 
 @media (max-width: 1440px), (max-height: 900px) {
   .hero__giant-word {
-    font-size: clamp(4rem, 11vw, 12rem);
-    margin-top: -10vh;
+    font-size: clamp(4rem, 13.5vw, 14rem);
+    margin-top: -20vh;
   }
 }
 
@@ -124,18 +124,36 @@
 
 /* ---- Subtitle ---- */
 .hero__sub {
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   color: #ffffff;
   max-width: 45ch;
   line-height: 1.5;
-  margin-bottom: clamp(28px, 4vw, 52px);
+  margin-bottom: clamp(20px, 3vw, 40px);
   text-shadow: 0 4px 12px rgba(0,0,0,0.5);
   font-weight: 500;
+}
+
+@media (max-width: 1440px), (max-height: 900px) {
+  .hero__sub {
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    margin-bottom: 24px;
+  }
 }
 
 /* ---- CTA ---- */
 .hero__cta {
   font-size: 1rem;
+}
+
+@media (max-width: 1440px), (max-height: 900px) {
+  .hero__cta {
+    font-size: 0.85rem !important;
+    padding: 10px 24px !important;
+  }
+  .hero__cta svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /* ---- Bottom strip — 7 factors ---- */
