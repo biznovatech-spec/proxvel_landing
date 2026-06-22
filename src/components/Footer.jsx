@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <span>© {year} PROXVEL. Todos los derechos reservados.</span>
+          <span>© {year} PROXVEL. Todos los derechos reservados por Biznovatech.</span>
           <div className="footer__legal">
             <a href="#top">Privacidad</a>
             <a href="#top">Términos</a>
