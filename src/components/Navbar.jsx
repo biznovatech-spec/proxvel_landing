@@ -29,7 +29,7 @@ export default function Navbar() {
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="nav__inner">
         <a href="#top" className="nav__brand" onClick={close} aria-label="PROXVEL — inicio">
-          <img src={logo} alt="" className="nav__logo" width="38" height="38" />
+          <img src={logo} alt="" className="nav__logo" width="32" height="32" />
           <span className="nav__word">PROXVEL</span>
         </a>
 
@@ -54,10 +54,12 @@ export default function Navbar() {
         </nav>
 
         <div className="nav__actions">
-          <MagneticButton href="#beta" className="btn btn-primary nav__cta">
-            <Icon name="zap" size={17} />
+          <a href="#beta" className="nav__btn-outline">
             Descargar beta
-          </MagneticButton>
+          </a>
+          <a href="#beta" className="nav__btn-circle">
+            <Icon name="arrowUpRight" size={16} />
+          </a>
           <button
             className="nav__burger"
             aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
