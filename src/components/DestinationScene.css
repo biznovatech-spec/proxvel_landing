@@ -1,0 +1,23 @@
+.scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scene__mist {
+  animation: drift 16s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.scene__condor {
+  animation: floaty 7s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene__mist,
+  .scene__condor {
+    animation: none;
+  }
+}

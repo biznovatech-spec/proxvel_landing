@@ -1,0 +1,261 @@
+.cin-dest {
+  position: relative;
+  background: var(--void);
+  padding-bottom: clamp(72px, 11vw, 130px);
+  padding-top: clamp(72px, 11vw, 140px);
+}
+
+/* Consistent gold hairline boundary — same transition language site-wide */
+.cin-dest::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline), transparent);
+}
+
+.cin-dest__head {
+  margin-bottom: clamp(48px, 7vw, 80px);
+}
+
+/* ---- Mosaic ---- */
+.cin-dest__mosaic {
+  padding-inline: clamp(16px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+/* Row 1: featured (large left + 2 stacked right) */
+.cin-dest__row--featured {
+  display: grid;
+  grid-template-areas:
+    'a b'
+    'a c';
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  height: clamp(380px, 55vw, 680px);
+}
+
+/* Row 2: three equal */
+.cin-dest__row--trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  height: clamp(220px, 28vw, 380px);
+}
+
+/* Row 3: four equal */
+.cin-dest__row--quartet {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  height: clamp(180px, 22vw, 300px);
+}
+
+/* ---- Destination card ---- */
+.dest-card {
+  position: relative;
+  height: 100%;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  cursor: default;
+  background: var(--ink-800);
+}
+
+.dest-card__photo {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.4s var(--ease-out);
+}
+
+.dest-card:hover .dest-card__photo {
+  transform: scale(1.05);
+}
+
+.dest-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 8, 17, 0.92) 0%,
+    rgba(5, 8, 17, 0.4) 48%,
+    rgba(5, 8, 17, 0.08) 100%
+  );
+  transition: background 0.6s var(--ease-out);
+}
+
+/* On hover the gradient deepens slightly — destination "settles in" */
+.dest-card:hover .dest-card__overlay {
+  background: linear-gradient(
+    to top,
+    rgba(5, 8, 17, 0.95) 0%,
+    rgba(5, 8, 17, 0.55) 55%,
+    rgba(5, 8, 17, 0.12) 100%
+  );
+}
+
+.dest-card__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(16px, 2.5vw, 28px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dest-card__tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dest-card__tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+}
+
+.dest-card__name {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.2vw, 1.9rem);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.dest-card--large .dest-card__name {
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+}
+
+/* Gold underline that draws in from the left on hover —
+   a deliberate, hand-set typographic gesture, not a color flash. */
+.dest-card__underline {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1.5px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--gold-grad);
+  transition: transform 0.55s var(--ease-out);
+}
+
+.dest-card:hover .dest-card__underline {
+  transform: scaleX(1);
+}
+
+.dest-card__region {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.04em;
+}
+
+/* Quote stays hidden until hover, then rises into view */
+.dest-card__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(0.82rem, 1.3vw, 1rem);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 42ch;
+  margin-top: 2px;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(8px);
+  overflow: hidden;
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out),
+    max-height 0.5s var(--ease-out);
+}
+
+.dest-card:hover .dest-card__quote {
+  opacity: 1;
+  max-height: 6em;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  /* On touch there is no hover — show quote softly so cards aren't bare */
+  .dest-card__quote {
+    opacity: 0.78;
+    max-height: 6em;
+    transform: none;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .cin-dest__row--featured {
+    grid-template-areas:
+      'a a'
+      'b c';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.4fr 1fr;
+    height: auto;
+    min-height: 460px;
+  }
+
+  .cin-dest__row--quartet {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+
+  .cin-dest__row--quartet > * {
+    height: clamp(160px, 22vw, 240px);
+  }
+}
+
+@media (max-width: 640px) {
+  .cin-dest__mosaic {
+    padding-inline: 12px;
+  }
+
+  .cin-dest__row--featured {
+    grid-template-areas:
+      'a'
+      'b'
+      'c';
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 220px 220px;
+    height: auto;
+  }
+
+  .cin-dest__row--trio {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .cin-dest__row--trio > * {
+    height: 220px;
+  }
+
+  .cin-dest__row--quartet {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+
+  .cin-dest__row--quartet > * {
+    height: 200px;
+  }
+}

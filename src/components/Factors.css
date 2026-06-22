@@ -1,0 +1,298 @@
+/* ============================================================
+   Factors — dark editorial index
+   with a cursor-following image preview.
+   ============================================================ */
+
+.factors {
+  position: relative;
+  background: var(--void);
+  padding-block: clamp(80px, 11vw, 150px) clamp(80px, 11vw, 150px);
+  isolation: isolate;
+}
+
+/* Gold hairline marks the section boundary — the consistent transition language */
+.factors::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline), transparent);
+}
+
+.factors__container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Head ---- */
+.factors__head {
+  max-width: 760px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.factors__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  margin-bottom: 22px;
+}
+
+.factors__eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-500));
+}
+
+.factors__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.factors__title-accent {
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---- The list ---- */
+.factors__list {
+  list-style: none;
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.factors__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+  padding: clamp(22px, 3vw, 34px) clamp(8px, 2vw, 24px);
+  border-bottom: 1px solid var(--hairline-soft);
+  cursor: pointer;
+  transition: padding-left 0.45s var(--ease-out), opacity 0.4s var(--ease-out);
+}
+
+/* Soft highlight slab behind the hovered row */
+.factors__row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  z-index: -1;
+}
+
+.factors__row.is-active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.factors__row.is-active {
+  padding-left: clamp(18px, 3vw, 34px);
+}
+
+/* Non-hovered rows recede — focus follows the cursor */
+.factors__row.is-dimmed {
+  opacity: 0.4;
+}
+
+.factors__num {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.4s var(--ease-out);
+}
+
+.factors__row.is-active .factors__num {
+  color: var(--gold-400);
+}
+
+.factors__main {
+  min-width: 0;
+}
+
+.factors__name {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* Hand-set gold underline draws in on hover */
+.factors__underline {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--gold-grad);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.factors__row.is-active .factors__underline {
+  transform: scaleX(1);
+}
+
+.factors__desc {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 52ch;
+  margin-top: 8px;
+  /* Collapsed by default → revealed on hover for an uncluttered index */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  transition:
+    max-height 0.5s var(--ease-out),
+    opacity 0.45s var(--ease-out),
+    transform 0.45s var(--ease-out);
+}
+
+.factors__row.is-active .factors__desc {
+  max-height: 5em;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accent dot per factor */
+.factors__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent, var(--gold-500));
+  opacity: 0.4;
+  transition: opacity 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+
+.factors__row.is-active .factors__dot {
+  opacity: 1;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* Arrow slides up-right on hover */
+.factors__arrow {
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  opacity: 0;
+  transform: translate(-8px, 8px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.factors__row.is-active .factors__arrow {
+  opacity: 0.85;
+  transform: translate(0, 0);
+}
+
+/* ---- Floating cursor-following preview ---- */
+.factors__preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.factors__preview-card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: -240px 0 0 28px; /* sits up-and-right of the cursor */
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0c1426;
+  box-shadow:
+    0 40px 80px -28px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transform: scale(0.82) translateY(10px);
+  transition: opacity 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.factors__preview-card.is-on {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.factors__preview-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    filter 0.55s var(--ease-out);
+}
+
+.factors__preview-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 8, 17, 0.35), transparent 60%);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 720px) {
+  .factors__row {
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+  }
+
+  /* No cursor on touch → keep descriptions visible, drop hover-only chrome */
+  .factors__arrow {
+    display: none;
+  }
+
+  .factors__desc {
+    max-height: 6em;
+    opacity: 0.9;
+    transform: none;
+    margin-top: 6px;
+  }
+
+  .factors__underline {
+    display: none;
+  }
+
+  .factors__row.is-dimmed {
+    opacity: 1;
+  }
+}
+
+/* Hide the floating preview entirely where there's no fine pointer */
+@media (hover: none) {
+  .factors__preview {
+    display: none;
+  }
+}

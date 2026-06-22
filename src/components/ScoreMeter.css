@@ -1,0 +1,57 @@
+.meter {
+  width: 100%;
+}
+
+.meter__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.meter__label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+
+.meter__val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.meter__val--good {
+  color: var(--good);
+}
+.meter__val--mid {
+  color: var(--gold-400);
+}
+.meter__val--low {
+  color: var(--low);
+}
+
+.meter__track {
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.meter__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  transition: width 1.1s var(--ease-out);
+}
+
+.meter__fill--good {
+  background: linear-gradient(90deg, #3f9d63, #5fc27e);
+}
+.meter__fill--mid {
+  background: linear-gradient(90deg, #c8922e, #e9c46a);
+}
+.meter__fill--low {
+  background: linear-gradient(90deg, #c2613a, #e8845e);
+}

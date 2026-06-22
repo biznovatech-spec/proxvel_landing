@@ -1,0 +1,209 @@
+/* ── Hero: scroll track para la animación de clip-path ── */
+.hero {
+  position: relative;
+  /* El track da espacio para que la animación ocurra antes de llegar al siguiente bloque */
+  height: calc(1500px + 100dvh);
+  min-height: calc(1500px + 620px);
+}
+
+/* ── Fondo: sticky con clip-path animado por framer-motion ── */
+.hero__bg {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  width: 100%;
+  background: #000;
+  /* clip-path se aplica vía style={{ clipPath }} en el JSX */
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  /* background-size se anima via framer-motion; sobrescribe el cover del .photo base */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 8, 17, 0.75) 0%,
+    rgba(5, 8, 17, 0.18) 40%,
+    rgba(5, 8, 17, 0.65) 100%
+  );
+}
+
+/* ── Capa de contenido: sticky superpuesta al fondo ──
+   margin-top negativo la "tira" de vuelta al inicio del track,
+   quedando exactamente encima del .hero__bg sticky.            */
+.hero__layer {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  margin-top: calc(-100dvh);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  /* Pointer events: el div vacío no bloquea el scroll */
+  pointer-events: none;
+}
+
+/* Restablecer pointer-events para elementos interactivos */
+.hero__layer .hero__content,
+.hero__layer .hero__cta,
+.hero__layer .hero__strip {
+  pointer-events: auto;
+}
+
+/* Envuelve el contenido animable (opacity + translateY) */
+.hero__layer-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ---- Content — texto alineado al fondo ---- */
+.hero__content {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(80px, 12vw, 140px);
+}
+
+.hero__inner {
+  max-width: 980px;
+}
+
+/* ---- Eyebrow ---- */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.hero__eyebrow-logo {
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+/* ---- Headline ---- */
+.hero__headline {
+  font-family: var(--font-display);
+  font-size: clamp(68px, 13vw, 152px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: clamp(24px, 3.5vw, 44px);
+}
+
+.hero__headline em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--gold-300);
+}
+
+/* ---- Subtitle ---- */
+.hero__sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 50ch;
+  line-height: 1.7;
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+/* ---- CTA ---- */
+.hero__cta {
+  font-size: 1rem;
+}
+
+/* ---- Scroll indicator ---- */
+.hero__scroll {
+  position: absolute;
+  bottom: clamp(28px, 4vw, 48px);
+  right: clamp(24px, 4vw, 56px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+}
+
+/* ---- Bottom strip — 7 factors ---- */
+.hero__strip {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(5, 8, 17, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.hero__strip-item {
+  flex: 1;
+  text-align: center;
+  padding: 13px 4px;
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.32);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  white-space: nowrap;
+}
+
+.hero__strip-item:last-child {
+  border-right: none;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .hero__scroll {
+    display: none;
+  }
+
+  .hero__headline {
+    font-size: clamp(56px, 18vw, 90px);
+  }
+
+  .hero__strip {
+    flex-wrap: wrap;
+  }
+
+  .hero__strip-item {
+    flex: 0 0 calc(100% / 4);
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__strip-item {
+    flex: 0 0 calc(100% / 3);
+  }
+}

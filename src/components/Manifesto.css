@@ -1,0 +1,166 @@
+.manifesto {
+  position: relative;
+  padding-block: clamp(80px, 14vw, 160px);
+  background: var(--void);
+  overflow: hidden;
+}
+
+/* Editorial spotlight — a faint warm glow that trails the cursor,
+   as if the statement is lit on a dark stage. */
+.manifesto__glow {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: min(900px, 92vw);
+  height: 520px;
+  margin-left: calc(min(900px, 92vw) / -2);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(233, 196, 106, 0.1) 0%,
+    rgba(233, 196, 106, 0.035) 38%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.manifesto__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Statement ---- */
+.manifesto__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(60px, 10vw, 110px);
+}
+
+.manifesto__statement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 4vw, 44px);
+  text-align: center;
+}
+
+.manifesto__rule {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(233, 196, 106, 0.25), transparent);
+}
+
+.manifesto__quote {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5.5vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  will-change: transform;
+}
+
+.word-reveal-wrap {
+  display: inline-block;
+}
+
+.word-reveal-word {
+  display: inline-block;
+  white-space: pre;
+}
+
+.manifesto__quote em {
+  display: inline-block; /* allow parallax transform on the inline accent */
+  font-style: italic;
+  color: var(--gold-300);
+  will-change: transform;
+}
+
+/* ---- Pillars ---- */
+.manifesto__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: clamp(36px, 5vw, 60px);
+}
+
+.manifesto__pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.manifesto__pillar:hover {
+  transform: translateY(-4px);
+}
+
+.manifesto__n {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-600);
+  transition: color 0.45s var(--ease-out), letter-spacing 0.45s var(--ease-out);
+}
+
+.manifesto__pillar:hover .manifesto__n {
+  color: var(--gold-400);
+  letter-spacing: 0.3em;
+}
+
+.manifesto__pillar-title {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+/* Gold underline draws in on hover — same hand-set gesture as the cards */
+.manifesto__pillar-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 1.5px;
+  width: 100%;
+  background: var(--gold-grad);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.55s var(--ease-out);
+}
+
+.manifesto__pillar:hover .manifesto__pillar-title::after {
+  transform: scaleX(1);
+}
+
+.manifesto__pillar-body {
+  font-size: 0.94rem;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+@media (max-width: 768px) {
+  .manifesto__pillars {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .manifesto__pillar {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .manifesto__pillar:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}

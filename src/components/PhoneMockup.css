@@ -1,0 +1,246 @@
+.phone {
+  position: relative;
+  width: min(310px, 78vw);
+  aspect-ratio: 310 / 638;
+}
+
+.phone__frame {
+  position: relative;
+  height: 100%;
+  border-radius: 46px;
+  padding: 12px;
+  background: linear-gradient(155deg, #2a3550, #0d1424 55%);
+  border: 1px solid rgba(233, 196, 106, 0.22);
+  box-shadow: 0 50px 90px -34px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  z-index: 2;
+}
+
+.phone__notch {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 22px;
+  border-radius: 999px;
+  background: #05080f;
+  z-index: 3;
+}
+
+.phone__screen {
+  height: 100%;
+  border-radius: 36px;
+  background: linear-gradient(180deg, #0b1322, #070d18);
+  overflow: hidden;
+  padding: 30px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.phone__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  padding: 0 4px;
+}
+
+.phone__status-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.phone__status-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-400);
+  opacity: 0.85;
+}
+
+.phone__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone__logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(233, 196, 106, 0.4));
+}
+
+.phone__hi {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+.phone__sub {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.phone__bell {
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--gold-300);
+  background: var(--surface);
+  border: 1px solid var(--hairline-soft);
+}
+
+.phone__card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--hairline-soft);
+  border-radius: 22px;
+  padding: 12px;
+}
+
+.phone__scene {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.phone__match {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #2a1c05;
+  background: var(--gold-grad);
+  box-shadow: 0 6px 16px -6px rgba(212, 162, 74, 0.7);
+}
+
+.phone__caption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+}
+.phone__place {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+}
+.phone__region {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.phone__factors {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.phone__factor {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 9px;
+}
+.phone__factor-label {
+  font-size: 0.66rem;
+  color: var(--muted);
+}
+.phone__bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.phone__bar i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c8922e, #e9c46a);
+  transition: width 1s var(--ease-out);
+}
+
+.phone__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #2a1c05;
+  background: var(--gold-grad);
+}
+
+.phone__chips {
+  display: flex;
+  gap: 8px;
+}
+.phone__chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  background: var(--surface);
+  border: 1px solid var(--hairline-soft);
+}
+.phone__chips svg {
+  color: var(--gold-300);
+}
+
+/* glow ring behind the phone */
+.phone__ring {
+  position: absolute;
+  inset: -14% -22%;
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, rgba(233, 196, 106, 0.28), transparent 62%);
+  filter: blur(8px);
+  animation: pulse-soft 6s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone__ring {
+    animation: none;
+  }
+}

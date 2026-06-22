@@ -1,0 +1,145 @@
+.how {
+  position: relative;
+  /* background dark to blend with dark images */
+  background: var(--void);
+  padding-bottom: 10vh; /* space at the bottom after cards */
+}
+
+/* Container for the sticky header */
+.how__head {
+  padding-top: clamp(80px, 10vw, 120px);
+  padding-bottom: clamp(40px, 5vw, 60px);
+}
+
+.how__eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-600);
+  margin-bottom: 22px;
+}
+
+.how__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.how__sub {
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+/* Wrapper for the cards */
+.how__cards-wrapper {
+  margin-top: 0;
+}
+
+/* Individual Card Container */
+.how-card-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+}
+
+/* The actual Card */
+.how-card {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* The scaling is handled by framer-motion via inline styles */
+  transform-origin: top center;
+  background: var(--void);
+}
+
+.how-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: clamp(30px, 5vw, 60px);
+}
+
+.how-card-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.how-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Transform handled by Framer Motion */
+}
+
+.how-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(5, 8, 17, 0.55); /* Darken everything equally for centered text */
+}
+
+.how-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 700px;
+}
+
+.how-card-n {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold-400);
+}
+
+.how-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.how-card-desc {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .how-card-container {
+    height: 85vh;
+  }
+  .how-card {
+    height: 100%;
+    border-radius: 20px;
+  }
+  .how-card-inner {
+    padding: 30px 24px;
+  }
+}

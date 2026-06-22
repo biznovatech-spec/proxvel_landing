@@ -1,0 +1,197 @@
+.engine {
+  background: var(--void);
+  padding-bottom: 0;
+}
+
+.engine__head {
+  padding-top: clamp(72px, 11vw, 140px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+/* ---- Profile selector ---- */
+.engine__profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+.engine__profile-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.45s var(--ease);
+  cursor: pointer;
+}
+
+/* Gold fill lives on a pseudo so it can sweep in instead of snapping */
+.engine__profile-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gold-grad);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease);
+}
+
+.engine__profile-btn:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.engine__profile-btn.is-active {
+  color: #2a1c05;
+  border-color: transparent;
+  box-shadow: 0 8px 28px -8px rgba(212, 162, 74, 0.55);
+}
+
+.engine__profile-btn.is-active::before {
+  transform: scaleX(1);
+}
+
+/* Icon nudges right as the profile activates — small, deliberate */
+.engine__profile-btn svg {
+  transition: transform 0.35s var(--ease);
+}
+.engine__profile-btn.is-active svg {
+  transform: translateX(1px) scale(1.05);
+}
+
+.engine__tagline {
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-style: italic;
+  color: var(--faint);
+}
+
+/* ---- Full-bleed reveal ---- */
+.engine__reveal {
+  position: relative;
+  height: clamp(320px, 55vw, 640px);
+  overflow: hidden;
+  transition: opacity 0.32s var(--ease);
+}
+
+.engine__reveal--fading {
+  opacity: 0;
+}
+
+.engine__photo {
+  position: absolute;
+  inset: 0;
+  /* Cross-fade on change + a slow, perpetual Ken Burns drift */
+  animation:
+    fade-cross-in 0.6s var(--ease) both,
+    engine-kenburns 22s ease-in-out 0.6s infinite alternate;
+}
+
+@keyframes engine-kenburns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engine__photo { animation: fade-cross-in 0.6s var(--ease) both; }
+}
+
+.engine__reveal-overlay {
+  /* Defined dynamically in jsx for inset and transform, but base properties here */
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 8, 17, 0) 0%,
+    rgba(5, 8, 17, 0.2) 40%,
+    rgba(5, 8, 17, 0.95) 100%
+  );
+  pointer-events: none;
+}
+
+.engine__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: clamp(32px, 5vw, 64px);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.engine__caption-region {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold-400);
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.engine__caption-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 7rem);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.engine__caption-quote {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.engine__caption-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.engine__caption-tags span {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+}
+
+@media (max-width: 640px) {
+  .engine__profiles {
+    gap: 8px;
+  }
+
+  .engine__profile-btn {
+    font-size: 0.82rem;
+    padding: 10px 16px;
+  }
+}

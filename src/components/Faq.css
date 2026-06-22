@@ -1,0 +1,127 @@
+.faq {
+  position: relative;
+  background: var(--void);
+}
+
+/* Consistent gold hairline boundary — same transition language site-wide */
+.faq::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline), transparent);
+}
+
+.faq__wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.faq__wrap .section-head {
+  margin-bottom: 0;
+  position: sticky;
+  top: 110px;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq__item {
+  position: relative;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  border: 1px solid var(--hairline-soft);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+/* Gold edge wipes down the left as the answer opens */
+.faq__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gold-grad);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.faq__item.is-open {
+  border-color: var(--hairline);
+  background: var(--surface-2);
+}
+
+.faq__item.is-open::before {
+  transform: scaleY(1);
+}
+
+.faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 22px;
+  text-align: left;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+.faq__chevron {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--gold-300);
+  background: rgba(233, 196, 106, 0.1);
+  border: 1px solid var(--hairline);
+  transition: transform 0.35s var(--ease), background 0.3s var(--ease);
+}
+
+.faq__item.is-open .faq__chevron {
+  transform: rotate(180deg);
+  background: var(--gold-grad);
+  color: #2a1c05;
+  border-color: transparent;
+}
+
+/* Removed grid hack, framer-motion handles height now */
+.faq__a {
+  overflow: hidden;
+}
+
+.faq__a-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq__a p {
+  padding: 0 22px 22px;
+  font-size: 0.94rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+@media (max-width: 860px) {
+  .faq__wrap {
+    grid-template-columns: 1fr;
+  }
+  .faq__wrap .section-head {
+    position: static;
+  }
+}
