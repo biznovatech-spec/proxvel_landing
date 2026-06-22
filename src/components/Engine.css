@@ -4,7 +4,7 @@
 }
 
 .engine__head {
-  padding-top: clamp(72px, 11vw, 140px);
+  padding-top: clamp(40px, 6vw, 80px);
   padding-bottom: clamp(40px, 6vw, 72px);
 }
 

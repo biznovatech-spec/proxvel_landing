@@ -44,6 +44,13 @@
   margin-top: -15vh; /* slightly elevated to be behind mountains */
 }
 
+@media (max-width: 1440px), (max-height: 900px) {
+  .hero__giant-word {
+    font-size: clamp(4rem, 11vw, 12rem);
+    margin-top: -10vh;
+  }
+}
+
 /* ── Capa 3: Montañas ── */
 .hero__layer--mountains {
   z-index: 3;
@@ -79,6 +86,12 @@
   align-items: flex-end;
   justify-content: center; /* Centrar horizontalmente */
   padding-bottom: clamp(60px, 10vw, 120px);
+}
+
+@media (max-width: 1440px), (max-height: 900px) {
+  .hero__content {
+    padding-bottom: 30px; /* Baja más la descripción y botón en laptops */
+  }
 }
 
 .hero__inner {

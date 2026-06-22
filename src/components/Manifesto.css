@@ -1,6 +1,7 @@
 .manifesto {
   position: relative;
-  padding-block: clamp(80px, 14vw, 160px);
+  padding-top: clamp(80px, 14vw, 160px);
+  padding-bottom: clamp(40px, 6vw, 80px);
   background: var(--void);
   overflow: hidden;
 }
