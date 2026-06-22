@@ -84,19 +84,19 @@
   background: linear-gradient(
     to top,
     rgba(5, 8, 17, 0.92) 0%,
-    rgba(5, 8, 17, 0.4) 48%,
-    rgba(5, 8, 17, 0.08) 100%
+    rgba(5, 8, 17, 0.2) 35%,
+    transparent 60%
   );
   transition: background 0.6s var(--ease-out);
 }
 
-/* On hover the gradient deepens slightly — destination "settles in" */
+/* On hover the gradient deepens slightly ONLY at the bottom — destination stays bright */
 .dest-card:hover .dest-card__overlay {
   background: linear-gradient(
     to top,
     rgba(5, 8, 17, 0.95) 0%,
-    rgba(5, 8, 17, 0.55) 55%,
-    rgba(5, 8, 17, 0.12) 100%
+    rgba(5, 8, 17, 0.3) 40%,
+    transparent 70%
   );
 }
 

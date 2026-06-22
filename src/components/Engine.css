@@ -115,8 +115,8 @@
   background: linear-gradient(
     to top,
     rgba(15, 23, 42, 0.95) 0%,
-    rgba(15, 23, 42, 0.4) 40%,
-    transparent 100%
+    rgba(15, 23, 42, 0.2) 30%,
+    transparent 50%
   );
   pointer-events: none;
 }
