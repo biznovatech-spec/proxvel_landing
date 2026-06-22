@@ -1,11 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { STEPS } from '../data/content';
 import './HowItWorks.css';
 
 const Card = ({ step, i, progress, range, targetScale }) => {
   const container = useRef(null);
-  
+  const [loaded, setLoaded] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ['start end', 'start start']
@@ -35,14 +36,18 @@ const Card = ({ step, i, progress, range, targetScale }) => {
           <div className="how-card-img-wrap">
             {/* Dark overlay for text readability */}
             <div className="how-card-overlay" />
-            <motion.img 
+            <motion.img
               style={{ scale: imageScale }}
-              src={`/images/step-${i + 1}.webp`} 
-              alt={step.title} 
-              className="how-card-img"
+              src={`/images/step-${i + 1}.webp`}
+              alt={step.title}
+              className={`how-card-img ${loaded ? 'is-loaded' : ''}`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setLoaded(true)}
               onError={(e) => {
                 // Fallback incase user hasn't generated all images yet
                 e.target.src = 'https://images.unsplash.com/photo-1518182170546-076616fdcb8b?q=80&w=2000&auto=format&fit=crop';
+                setLoaded(true);
               }}
             />
           </div>

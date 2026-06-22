@@ -485,7 +485,6 @@ p {
   background-repeat: no-repeat;
 }
 
-.photo[data-scene='hero']           { background-image: url('/images/hero.webp'); }
 .photo[data-scene='machupicchu']    { background-image: url('/images/machupicchu.webp'); }
 .photo[data-scene='lima-centro']    { background-image: url('/images/lima-centro.webp'); }
 .photo[data-scene='circuito-magico']{ background-image: url('/images/circuito-magico.webp'); }

@@ -89,6 +89,13 @@
   height: 100%;
   object-fit: cover;
   /* Transform handled by Framer Motion */
+  /* Fade in once the image actually decodes — no abrupt pop-in on Vercel */
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-out);
+}
+
+.how-card-img.is-loaded {
+  opacity: 1;
 }
 
 .how-card-overlay {

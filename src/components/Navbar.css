@@ -202,14 +202,15 @@
 }
 
 @media (max-width: 860px) {
-  .nav__links {
-    display: none;
-  }
-  .nav__cta {
+  .nav__links,
+  .nav__btn-outline,
+  .nav__btn-circle {
     display: none;
   }
   .nav__burger {
     display: inline-flex;
+    width: 46px;
+    height: 46px;
   }
 }
 
