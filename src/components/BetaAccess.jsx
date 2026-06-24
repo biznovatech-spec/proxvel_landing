@@ -24,7 +24,7 @@ export default function BetaAccess() {
           </ul>
 
           <div className="beta__actions">
-            <a href={BRAND.betaApkUrl} download className="btn btn-primary btn-lg beta__download-btn">
+            <a href={BRAND.betaApkUrl} download="PROXVEL-Beta.apk" target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg beta__download-btn">
               <Icon name="smartphone" size={18} />
               Descargar Demo
             </a>

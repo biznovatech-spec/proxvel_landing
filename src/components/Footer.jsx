@@ -48,7 +48,7 @@ export default function Footer() {
 
           <div className="footer__nav">
             <span className="footer__nav-title">Beta</span>
-            <a href="#beta">Descargar APK</a>
+            <a href="/app-release.apk" download="PROXVEL-Beta.apk" target="_blank" rel="noopener noreferrer">Descargar APK</a>
             <a href="#beta">Recibir por correo</a>
             <span className="footer__soon">
               <Icon name="googlePlay" size={15} /> Google Play (pronto)
