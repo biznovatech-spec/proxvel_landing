@@ -54,6 +54,13 @@ export default function Footer() {
               <Icon name="googlePlay" size={15} /> Google Play (pronto)
             </span>
           </div>
+
+          <div className="footer__nav">
+            <span className="footer__nav-title">Créditos / Contacto</span>
+            <a href="mailto:alvaro.maguina@upeu.edu.pe">alvaro.maguina@upeu.edu.pe</a>
+            <a href="mailto:moises.morales@upeu.edu.pe">moises.morales@upeu.edu.pe</a>
+            <a href="mailto:erick.mendoza@upeu.edu.pe">erick.mendoza@upeu.edu.pe</a>
+          </div>
         </div>
 
         <div className="footer__bottom">
