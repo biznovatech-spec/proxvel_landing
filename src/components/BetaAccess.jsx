@@ -24,7 +24,7 @@ export default function BetaAccess() {
           </ul>
 
           <div className="beta__actions">
-            <a href="#" className="btn btn-primary btn-lg beta__download-btn">
+            <a href={BRAND.betaApkUrl} download className="btn btn-primary btn-lg beta__download-btn">
               <Icon name="smartphone" size={18} />
               Descargar Demo
             </a>

@@ -6,8 +6,8 @@
 export const BRAND = {
   name: 'PROXVEL',
   tagline: 'Tu próximo destino, recomendado con inteligencia.',
-  // Enlace de descarga del APK beta (futuro GitHub Release).
-  betaApkUrl: 'https://github.com/proxvel/proxvel-app/releases/latest',
+  // Enlace de descarga del APK beta.
+  betaApkUrl: '/app-release.apk',
 };
 
 export const NAV = [
